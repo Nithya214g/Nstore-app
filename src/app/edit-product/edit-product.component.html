@@ -1,0 +1,37 @@
+
+
+<section id="services1" class="bg-light py-5">
+    <div class="container">
+    <form [formGroup]="editproduct" (ngSubmit)="updateProduct()">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" formControlName="title" class="form-control" required [(ngModel)]="product.title" >
+            <div *ngIf="f['title']?.invalid && f['title']?.touched" class="error">
+                <small *ngIf="f['title']?.errors?.['required']">Title is required.</small>
+              </div>
+            
+        </div>
+        <div class="form-group">
+          <label for="price">Price:</label>
+          <input type="number" id="price" formControlName="price" class="form-control" required [(ngModel)]="product.price"  >
+          
+      </div> 
+
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" formControlName="description" class="form-control"  [(ngModel)]="product.description" required></textarea>
+        
+    </div> 
+        
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <input type="text" id="category" formControlName="category" class="form-control" required [(ngModel)]="product.category" >
+           
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Update Product</button>
+          </div>
+          <input type="hidden" name="_method" value="PUT">
+  </form>
+  </div>
+  </section>

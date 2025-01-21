@@ -1,0 +1,43 @@
+
+
+<div class="input-group mb-3 search-container">
+  <input type="text" class="form-control" placeholder="Search products..." [(ngModel)]="searchQuery" aria-label="Recipient's username" aria-describedby="button-addon2">
+  <button class="btn btn-primary" type="button" id="button-addon2" (click)="onSearch()">Search</button>
+</div>
+<div class="product-list">
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Price ($)</th>
+        <th scope="col">Category</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+   
+<tr *ngFor="let product of paginatedProductsList; index as i">
+        <td>{{ product.id}}</td>
+        <td >{{ product.title}}</td>
+        <td>${{ product.price}}</td>
+        <td>{{product.category}}</td>
+        <td><a routerLink="/view-product/{{ product.id }}">View</a>&nbsp; | 
+          <button type="button" class="btn btn-primary" [routerLink]="['/edit-product', product.id]">Edit</button>&nbsp; | 
+          <button type="button" class="btn btn-primary" (click)="deleteProduct(product.id)">Delete</button></td>
+      </tr>
+    
+    
+  </tbody>
+</table>
+<div class="pagination">
+  <button
+    class="btn"
+    *ngFor="let page of pages"
+    (click)="changePage(page)"
+    [class.active]="currentPage === page"
+  >
+    {{ page }}
+  </button>
+</div>
+  </div>
